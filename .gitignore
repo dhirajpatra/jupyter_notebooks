@@ -101,4 +101,5 @@ celerybeat-schedule
 *.jpg
 *.jpeg
 *.png
-
+*.h5
+*.tflite
