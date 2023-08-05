@@ -21,15 +21,8 @@ import datetime
 import math
 import pandas as pd
 import random 
-import radar
-
-import datetime
-import math
-import pandas as pd
-import random 
 import radar 
-from faker import Faker
-fake = Faker()
+
 
 def generateData(n):
   listdata = []
