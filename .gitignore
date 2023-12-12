@@ -92,6 +92,8 @@ celerybeat-schedule
 /site
 
 # mypy
+
+.DS_Store
 .mypy_cache/
 
 *.csv
