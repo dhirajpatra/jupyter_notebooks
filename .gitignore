@@ -9,9 +9,9 @@ __pycache__/
 *.pdf
 
 # Ignore specific folders
-/Advanced_Retrieval_for_AI_with_Chroma/
-/chromadb/
-/wizard_of_wikipedia_dataset/
+Advanced_Retrieval_for_AI_with_Chroma/
+chromadb/
+wizard_of_wikipedia_dataset/
 
 # Ignore virtual documents
 .virtual_documents
