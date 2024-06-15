@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Local ChatBot / CoPilot</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .message.user {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-end;
+        }
+        .message.bot {
+            background-color: #e2e3e5;
+            align-self: flex-start;
+        }
+        .input-group {
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Your Local ChatBot / CoPilot</h2>
+    <div class="chat-container" id="chat-container">
+        <!-- Chat messages will be appended here -->
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" id="user-input" placeholder="Ask a question..." aria-label="Ask a question">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    function sendMessage() {
+        const userInput = $('#user-input').val();
+        if (userInput.trim() === '') return;
+
+        // Append user message to chat container
+        $('#chat-container').append('<div class="message user">' + userInput + '</div>');
+        $('#user-input').val('');
+        scrollChatToBottom();
+
+        // Send AJAX request to backend
+        $.ajax({
+            url: 'http://localhost:8000/ask',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ question: userInput }),
+            success: function(response) {
+                // Append bot response to chat container
+                $('#chat-container').append('<div class="message bot">' + response.answer + '</div>');
+                scrollChatToBottom();
+            },
+            error: function() {
+                $('#chat-container').append('<div class="message bot">Error: Unable to get response from server.</div>');
+                scrollChatToBottom();
+            }
+        });
+    }
+
+    function scrollChatToBottom() {
+        $('#chat-container').scrollTop($('#chat-container')[0].scrollHeight);
+    }
+</script>
+
+</body>
+</html>
