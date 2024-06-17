@@ -9,16 +9,24 @@ __pycache__/
 *.pdf
 *.arrow
 *.json
-*.pikle
+*.pickle
 *.lock
+*.csv
+*.zip
+*.gz
+*.jpg
+*.jpeg
+*.png
+*.h5
+*.tflite
 
 # Ignore specific folders
-Advanced_Retrieval_for_AI_with_Chroma
-chromadb
-wizard_of_wikipedia_dataset
+Advanced_Retrieval_for_AI_with_Chroma/
+chromadb/
+wizard_of_wikipedia_dataset/
 
 # Ignore virtual documents
-.virtual_documents
+.virtual_documents/
 
 # Ignore C extensions
 *.so
@@ -87,7 +95,7 @@ instance/
 .webassets-cache
 
 # Scrapy
-.scrapy
+.scrapy/
 
 # Sphinx documentation
 docs/_build/
@@ -137,33 +145,3 @@ venv.bak/
 
 # mkdocs documentation
 /site/
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# macOS
-.DS_Store
-
-# Large files
-*.csv
-*.zip
-*.gz
-*.jpg
-*.jpeg
-*.png
-*.h5
-*.tflite
-
-# Exclude files larger than 49MB
-*/*.{49MB,}
