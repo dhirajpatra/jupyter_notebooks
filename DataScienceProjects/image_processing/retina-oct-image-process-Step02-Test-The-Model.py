@@ -19,7 +19,7 @@ print(categories)
 numOfClasses = len(categories)
 print(numOfClasses)
 
-
+# this function will prepare the image for the models
 def prepareImage(pathForImage):
     image = load_img(pathForImage, target_size=(224,224), color_mode='grayscale')
     imgResult = img_to_array(image)
