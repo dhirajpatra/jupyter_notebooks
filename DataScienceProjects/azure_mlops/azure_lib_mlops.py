@@ -1,11 +1,13 @@
 import azure.cli.core
 
+# This will fail if you are not logged in
 cli = azure.cli.core.AzureCli()
+# This will list all storage accounts
 cli.invoke(["storage", "account", "list"])
 
 
 from azureml.core import Workspace
-
+# This will fail if you are not logged in
 ws = Workspace.create(name='myworkspace', 
                      subscription_id='...', 
                      resource_group='myresourcegroup', 
@@ -13,7 +15,7 @@ ws = Workspace.create(name='myworkspace',
 
 
 from transformers import pipeline
-
+# This will download a pre-trained model
 classifier = pipeline("sentiment-analysis")
 result = classifier("I love this course!")
 print(result)

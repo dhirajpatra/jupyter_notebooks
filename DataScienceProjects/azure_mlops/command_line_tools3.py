@@ -6,6 +6,7 @@ print(f"Second argument: {sys.argv[2]}")
 
 from setuptools import setup
 
+# This is a minimal setup.py file
 setup(
     name='mypackage',
     version='1.0',
