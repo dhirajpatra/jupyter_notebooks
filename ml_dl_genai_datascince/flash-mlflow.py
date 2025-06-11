@@ -1,0 +1,90 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "02b57836-ffcf-4cf0-bc99-01f7d5be4f02",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "import mlflow\n",
+    "import pandas as pd\n",
+    "from flask import Flask, request, jsonify\n",
+    "import logging\n",
+    "\n",
+    "logging.basicConfig(level=logging.INFO)\n",
+    "logger = logging.getLogger(__name__)\n",
+    "\n",
+    "app = Flask(__name__)\n",
+    "\n",
+    "# Load the model from MLflow Model Registry\n",
+    "# We'll fetch the 'Staging' version for now. In a real CD pipeline,\n",
+    "# you'd likely fetch the 'Production' version.\n",
+    "model_name = \"WineQualityModel\"\n",
+    "model_stage = \"Staging\" # Or \"Production\"\n",
+    "\n",
+    "try:\n",
+    "    # Set MLflow tracking URI if using a remote server\n",
+    "    # os.environ[\"MLFLOW_TRACKING_URI\"] = \"http://your-mlflow-server:5000\"\n",
+    "    model = mlflow.pyfunc.load_model(model_uri=f\"models:/{model_name}/{model_stage}\")\n",
+    "    logger.info(f\"Successfully loaded model: {model_name} (Stage: {model_stage})\")\n",
+    "except Exception as e:\n",
+    "    logger.error(f\"Error loading MLflow model: {e}\")\n",
+    "    model = None # Handle case where model loading fails\n",
+    "\n",
+    "@app.route(\"/predict\", methods=[\"POST\"])\n",
+    "def predict():\n",
+    "    if model is None:\n",
+    "        return jsonify({\"error\": \"Model not loaded. Please check server logs.\"}), 500\n",
+    "\n",
+    "    try:\n",
+    "        data = request.get_json(force=True)\n",
+    "        # Assuming the input data is a list of dictionaries, one for each prediction\n",
+    "        # Example: [{\"fixed acidity\": 7.4, ..., \"alcohol\": 9.4}]\n",
+    "        input_df = pd.DataFrame(data)\n",
+    "\n",
+    "        predictions = model.predict(input_df)\n",
+    "        return jsonify({\"predictions\": predictions.tolist()})\n",
+    "    except Exception as e:\n",
+    "        logger.error(f\"Error during prediction: {e}\")\n",
+    "        return jsonify({\"error\": str(e)}), 400\n",
+    "\n",
+    "@app.route(\"/health\", methods=[\"GET\"])\n",
+    "def health_check():\n",
+    "    if model is not None:\n",
+    "        return jsonify({\"status\": \"healthy\", \"model_loaded\": True}), 200\n",
+    "    else:\n",
+    "        return jsonify({\"status\": \"unhealthy\", \"model_loaded\": False}), 503\n",
+    "\n",
+    "if __name__ == \"__main__\":\n",
+    "    # Use gunicorn for production-ready serving.\n",
+    "    # For local testing, you can use app.run(host='0.0.0.0', port=5001, debug=True)\n",
+    "    # The Gunicorn command will be used in the Dockerfile.\n",
+    "    logger.info(\"Starting Flask application. Use Gunicorn for production.\")\n",
+    "    app.run(host='0.0.0.0', port=5001, debug=True) # For local testing only"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
