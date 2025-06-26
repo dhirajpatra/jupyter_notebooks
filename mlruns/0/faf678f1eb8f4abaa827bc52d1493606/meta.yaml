@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/0/faf678f1eb8f4abaa827bc52d1493606/artifacts
+end_time: 1750927982838
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: faf678f1eb8f4abaa827bc52d1493606
+run_name: XGBClassifier
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750927979709
+status: 3
+tags: []
+user_id: dhirajpatra

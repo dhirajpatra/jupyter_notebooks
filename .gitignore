@@ -5,6 +5,10 @@ __pycache__/
 
 .DS_Store
 
+mlruns/
+mlartifacts/
+
+
 # Ignore specific file types
 *.pkl
 *.bin
@@ -146,4 +150,4 @@ venv.bak/
 .ropeproject
 
 # mkdocs documentation
-/site/
+/site/mlflow/.env
