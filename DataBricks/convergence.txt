@@ -1,0 +1,78 @@
+import matplotlib.pyplot as plt
+
+loss = [0.8, 0.5, 0.3, 0.1, 0.15, 0.05]  
+epochs = [0, 1, 2, 3, 4, 5]
+
+plt.plot(epochs, loss)
+plt.scatter([3], [0.1], color='red') # Local minimum
+plt.scatter([5], [0.05], color='green') # Global minimum 
+plt.title("Convergence to Minimum Loss")
+plt.show()
+
+
+import numpy as np
+
+# Example function to minimize
+def f(x):
+    return x**2
+
+# Derivative of function
+def df(x):
+    return 2*x
+
+learning_rate = 0.1
+
+# Gradient descent algorithm
+x = 5 # Initial value
+for i in range(10):
+    x -= learning_rate * df(x)
+    print(f"Iteration {i+1}: x = {x}")
+
+print(f"Final value of x: {x}")
+
+
+# Import modules 
+from sklearn.model_selection import KFold
+from sklearn.neighbors import KNeighborsClassifier
+
+# Sample data
+X = [1, 2, 3, 4, 5]  
+y = [0, 1, 2, 2, 1]
+
+# Convert data types
+X = np.array(X)  
+y = np.array(y)
+
+# K-fold Cross Validation
+kf = KFold(n_splits=3, shuffle=True)
+test_error = []
+
+for train_index, test_index in kf.split(X):
+    X_train, X_test = X[train_index], X[test_index]  
+    y_train, y_test = y[train_index], y[test_index]
+    
+    # Fit model
+    model = KNeighborsClassifier(n_neighbors=1)
+    model.fit(X_train.reshape(-1, 1), y_train)
+    
+    # Evaluate
+    test_error.append(1 - model.score(X_test.reshape(-1, 1), y_test)) 
+
+print("Test Errors:", test_error)
+
+
+import numpy as np
+from sklearn.neural_network import MLPClassifier
+
+X = [[0, 0], [1, 1]] 
+y = [0, 1]
+
+# Create neural network  
+mlp = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=500)  
+
+# Train neural network
+mlp.fit(X, y)  
+
+# Make prediction with neural network  
+print(mlp.predict([[2., 2.]]))
+

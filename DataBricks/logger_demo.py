@@ -1,0 +1,23 @@
+import logging
+
+# Create logger
+logger = logging.getLogger("app_logger")
+logger.setLevel(logging.DEBUG)
+
+# Create console handler
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+# Create formatter and add to handler
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+ch.setFormatter(formatter)
+
+# Add handler to logger
+logger.addHandler(ch)
+
+# Log messages
+logger.debug("Debug message")
+logger.info("Info message")
+logger.warning("Warning message")
+logger.error("Error message")
+logger.critical("Critical message")
