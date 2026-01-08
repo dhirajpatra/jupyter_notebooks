@@ -34,6 +34,10 @@ MLOPS/
     ```bash
     pip install -r requirements.txt
     ```
+3. Generate proto files:
+    ```bash
+    python -m grpc_tools.protoc -I. --python_out=server --grpc_python_out=server model.proto
+    ``` 
 
 ## Usage
 
