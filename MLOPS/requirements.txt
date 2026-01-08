@@ -1,0 +1,8 @@
+grpcio
+grpcio-tools
+tensorflow
+flask
+pandas
+scikit-learn
+numpy
+joblib
