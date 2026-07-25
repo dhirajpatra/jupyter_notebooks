@@ -151,3 +151,4 @@ venv.bak/
 
 # mkdocs documentation
 /site/mlflow/.env
+.env
