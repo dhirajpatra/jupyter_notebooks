@@ -1,0 +1,57 @@
+{
+  "messages": [
+    {
+      "type": "msg",
+      "body": "explain user1_array = user_item_matrix.loc[user1].values.reshape(1, -1)",
+      "raw_time": false,
+      "metadata": {
+        "settings": {},
+        "model": {
+          "id": null,
+          "settings": {}
+        },
+        "to_persona": "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona"
+      },
+      "id": "3f7d0b07-8aaf-42a4-bab8-09434d314dc8",
+      "time": 1788705187.6686249,
+      "sender": "5d662f426a6e4ed4b180d218f9a25d57"
+    },
+    {
+      "sender": "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona",
+      "raw_time": false,
+      "id": "984e558e-ce1c-4e57-9e85-7bc2617e9aef",
+      "time": 1788705187.6927981,
+      "mentions": [],
+      "body": "An error occurred while processing your message.\n\n<details class=\"jp-jai-error-details\">\n<summary>Error details (Error -32603: Internal error)</summary>\n\n**Error code:** -32603\n\n**Message:** Internal error\n\n**Data:**\n\n```json\n{\n  \"details\": \"Session was not created with authentication info or custom provider\"\n}\n```\n\n**Traceback:**\n\n```\nTraceback (most recent call last):\n  File \"/home/dhiraj/miniconda3/envs/gpu-torch/lib/python3.11/site-packages/jupyter_ai_persona_manager/persona_manager.py\", line 71, in _safe_process\n    await persona.process_message(message)\n  File \"/home/dhiraj/miniconda3/envs/gpu-torch/lib/python3.11/site-packages/jupyter_ai_acp_client/acp_personas/copilot.py\", line 67, in process_message\n    await super().process_message(message)\n  File \"/home/dhiraj/miniconda3/envs/gpu-torch/lib/python3.11/site-packages/jupyter_ai_acp_client/telemetry.py\", line 99, in wrapper\n    result = await method(self, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/dhiraj/miniconda3/envs/gpu-torch/lib/python3.11/site-packages/jupyter_ai_acp_client/base_acp_persona.py\", line 530, in process_message\n    await client.prompt_and_reply(\n  File \"/home/dhiraj/miniconda3/envs/gpu-torch/lib/python3.11/site-packages/jupyter_ai_acp_client/default_acp_client.py\", line 321, in prompt_and_reply\n    response = await conn.prompt(\n               ^^^^^^^^^^^^^^^^^^\n  File \"/home/dhiraj/miniconda3/envs/gpu-torch/lib/python3.11/site-packages/acp/client/connection.py\", line 201, in prompt\n    return await request_model(\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/dhiraj/miniconda3/envs/gpu-torch/lib/python3.11/site-packages/acp/utils.py\", line 97, in request_model\n    response = await conn.send_request(method, serialize_params(params))\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/dhiraj/miniconda3/envs/gpu-torch/lib/python3.11/site-packages/acp/connection.py\", line 144, in send_request\n    return await future\n           ^^^^^^^^^^^^\nacp.exceptions.RequestError: Internal error\n```\n</details>",
+      "type": "msg"
+    }
+  ],
+  "users": {
+    "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona": {
+      "name": "Copilot",
+      "bot": true,
+      "avatar_url": "/api/ai/avatars/jupyter-ai-personas%3A%3Ajupyter_ai_acp_client%3A%3ACopilotAcpPersona",
+      "color": null,
+      "initials": null,
+      "display_name": "Copilot",
+      "username": "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona"
+    },
+    "5d662f426a6e4ed4b180d218f9a25d57": {
+      "username": "5d662f426a6e4ed4b180d218f9a25d57",
+      "bot": false,
+      "name": "Anonymous Helike",
+      "display_name": "Anonymous Helike",
+      "color": "var(--jp-collaborator-color5)",
+      "mention_name": "Anonymous-Helike",
+      "avatar_url": null,
+      "initials": "AH"
+    }
+  },
+  "attachments": {},
+  "metadata": {
+    "id": "c233afee-ed91-4460-a828-c40bbb3c5d06",
+    "acp_session_ids": {
+      "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona": "56fc9954-0879-4de4-8cc7-eaca8918f209"
+    }
+  }
+}
